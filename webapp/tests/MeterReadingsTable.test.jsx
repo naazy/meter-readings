@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow, render, mount } from 'enzyme';
 import MeterReadingsTable from '../src/components/MeterReadingsTable.jsx';
-import meterReadingsData from '../src/data/meterReadingsSample.json';
+import meterReadingsSample from '../src/data/meterReadingsSample.json';
 import {getEnergyUsageData} from '../src/components/EnergyUsageChart.jsx';
 
 describe('<MeterReadingsTable />', () => {
   it('renders MeterReadingsTable component', () => {
-    const wrapper = shallow(<MeterReadingsTable meterReadings={meterReadingsData.electricity}/>);;
+    const wrapper = shallow(<MeterReadingsTable meterReadings={meterReadingsSample.electricity}/>);
     expect(wrapper.exists(<th>Date</th>)).toBe(true);
     expect(wrapper.exists(<th>Reading</th>)).toBe(true);
     expect(wrapper.exists(<th>Unit</th>)).toBe(true);

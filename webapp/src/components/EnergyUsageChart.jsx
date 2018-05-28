@@ -41,16 +41,16 @@ export const getEnergyUsageData  = meterReadings =>
       const previousDate = moment.utc(previousReading.readingDate);
       const currentDate = moment.utc(currentReading.readingDate);
       const daysSincePreviousReading = getDiffInDays(currentDate, previousDate);
-      const readingPerDay = (currentReading.cumulative - previousReading.cumulative) / daysSincePreviousReading;
+      const usagePerDay = (currentReading.cumulative - previousReading.cumulative) / daysSincePreviousReading;
 
       return {
-          date: moment(currentReading.readingDate).endOf('month').format("MMM Do YYYY"),
-          energyUsage: Math.round(readingPerDay * moment(currentDate).daysInMonth())
+          date: currentDate.endOf('month').format("MMM Do YYYY"),
+          energyUsage: Math.round(usagePerDay * currentDate.daysInMonth())
         }
       }
     }).filter(reading => reading);
 
- function getDiffInDays(mmt1, mm2) {
+ const getDiffInDays =(mmt1, mm2) => {
    return mmt1.diff(mm2, 'days');
  }
 

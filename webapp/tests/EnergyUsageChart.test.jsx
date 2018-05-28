@@ -1,9 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import meterReadingsPerfect from '../src/data/meterReadingsSample.json';
+import meterReadingsSample from '../src/data/meterReadingsSample.json';
 import {getEnergyUsageData} from '../src/components/EnergyUsageChart.jsx';
+import EnergyUsageChart from '../src/components/EnergyUsageChart.jsx';
 import meterReadingsReal from '../src/data/meterReadingsReal.json';
+
+describe('<EnergyUsageChart />', () => {
+  it('renders EnergyUsageChart component', () => {
+    const wrapper = shallow(<EnergyUsageChart meterReadings={meterReadingsSample.electricity}/>);
+    expect(wrapper.exists(<h2>Energy Usage (kWh)</h2>)).toBe(true);
+  });
+});
 
 describe('getEnergyUsageData', () => {
   it('getEnergyUsageData returns the monthly energyUsage for the provided data when readings are "perfect"', () => {
@@ -22,7 +30,7 @@ describe('getEnergyUsageData', () => {
         { date: 'Mar 31st 2018', energyUsage: 263 },
         { date: 'Apr 30th 2018', energyUsage: 234 } ];
 
-    const actualEnergyUsageData = getEnergyUsageData(meterReadingsPerfect.electricity);
+    const actualEnergyUsageData = getEnergyUsageData(meterReadingsSample.electricity);
     expect(actualEnergyUsageData).toEqual(expectedEnergyUsageData);
   });
 

@@ -4,7 +4,7 @@
     "description": "Show energy usage",
     "main": "index.js",
     "scripts": {
-        "lint": "eslint src/",
+        "lint": "./node_modules/eslint/bin/eslint.js src/",
         "build": "webpack",
         "start": "webpack-dev-server",
         "test": "jest",
